@@ -1,0 +1,1520 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KINBATTLE 2025 - Torneo Épico de Kin-ball</title>
+    <meta
+      name="description"
+      content="El torneo de Kin-ball más épico del año. Tres equipos, un balón gigante, una batalla legendaria. 10 de junio 2025 en IES Cañada de las Fuentes."
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --background: #0b0b0b;
+        --foreground: #ffffff;
+        --muted: #333333;
+        --muted-foreground: #aaaaaa;
+        --card: #111111;
+        --border: #333333;
+        --neon-pink: #ff00cc;
+        --neon-blue: #3333ff;
+        --yellow: #ffd700;
+        --gray: #888888;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .font-gaming {
+        font-family: "Orbitron", Arial, sans-serif;
+      }
+
+      .gradient-text {
+        background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Animations */
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 0 20px rgba(255, 0, 204, 0.5);
+        }
+        50% {
+          box-shadow:
+            0 0 40px rgba(255, 0, 204, 0.8),
+            0 0 60px rgba(51, 51, 255, 0.4);
+        }
+        100% {
+          box-shadow: 0 0 20px rgba(255, 0, 204, 0.5);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes countdown {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .animate-pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .animate-countdown {
+        animation: countdown 1s ease-in-out infinite;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(11, 11, 11, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-brand {
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--foreground);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover {
+        color: var(--neon-pink);
+      }
+
+      .btn {
+        background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 0, 204, 0.3);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--neon-pink);
+        color: var(--neon-pink);
+      }
+
+      .btn-outline:hover {
+        background: rgba(255, 0, 204, 0.1);
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 204, 0.1) 0%,
+          var(--background) 50%,
+          rgba(51, 51, 255, 0.1) 100%
+        );
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 16rem;
+        height: 16rem;
+        background: rgba(255, 0, 204, 0.1);
+        border-radius: 50%;
+        filter: blur(60px);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 25%;
+        right: 25%;
+        width: 24rem;
+        height: 24rem;
+        background: rgba(51, 51, 255, 0.1);
+        border-radius: 50%;
+        filter: blur(60px);
+        animation: float 6s ease-in-out infinite reverse;
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 10;
+        max-width: 1200px;
+        padding: 0 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 8vw, 8rem);
+        font-family: "Orbitron", sans-serif;
+        font-weight: 900;
+        margin-bottom: 2rem;
+      }
+
+      .hero p {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        margin-bottom: 3rem;
+        color: var(--muted-foreground);
+      }
+
+      /* Countdown */
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 3rem 0;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        text-align: center;
+      }
+
+      .countdown-number {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: bold;
+        background: var(--card);
+        border: 2px solid transparent;
+        background-image: linear-gradient(var(--card), var(--card)),
+          linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        min-width: 80px;
+      }
+
+      .countdown-label {
+        font-size: 0.9rem;
+        color: var(--muted-foreground);
+        margin-top: 0.5rem;
+      }
+
+      /* Sections */
+      section {
+        padding: 5rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-family: "Orbitron", sans-serif;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--muted-foreground);
+        margin-bottom: 3rem;
+      }
+
+      /* Event Info */
+      .event-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .event-card {
+        background: var(--card);
+        border: 2px solid transparent;
+        background-image: linear-gradient(var(--card), var(--card)),
+          linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255, 0, 204, 0.2);
+      }
+
+      .event-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--neon-pink);
+      }
+
+      .event-card:nth-child(even) .event-icon {
+        color: var(--neon-blue);
+      }
+
+      /* Prizes */
+      .prizes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .prize-card {
+        background: var(--card);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .prize-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 1rem;
+        padding: 2px;
+        background: linear-gradient(45deg, var(--yellow), #ffa500);
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+      }
+
+      .prize-card.second::before {
+        background: linear-gradient(45deg, var(--gray), #c0c0c0);
+      }
+
+      .prize-card:hover {
+        transform: scale(1.05);
+      }
+
+      .prize-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--yellow);
+      }
+
+      .prize-card.second .prize-icon {
+        color: var(--gray);
+      }
+
+      /* Merchandise */
+      .merch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .merch-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .merch-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255, 0, 204, 0.2);
+      }
+
+      .merch-image {
+        height: 200px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 204, 0.2),
+          rgba(51, 51, 255, 0.2)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+      }
+
+      .merch-content {
+        padding: 1.5rem;
+      }
+
+      .merch-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--neon-pink);
+      }
+
+      .color-dots {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .color-dot {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+      }
+
+      /* Activities */
+      .activities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
+
+      .activity-item {
+        text-align: center;
+      }
+
+      .activity-icon {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 3rem;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 204, 0.2),
+          transparent
+        );
+        transition: all 0.3s ease;
+      }
+
+      .activity-item:nth-child(2) .activity-icon {
+        background: linear-gradient(
+          135deg,
+          rgba(51, 51, 255, 0.2),
+          transparent
+        );
+      }
+
+      .activity-item:nth-child(3) .activity-icon {
+        background: linear-gradient(
+          135deg,
+          rgba(128, 0, 128, 0.2),
+          transparent
+        );
+      }
+
+      .activity-icon:hover {
+        transform: scale(1.1);
+      }
+
+      /* Registration Form */
+      .registration {
+        background: linear-gradient(135deg, var(--card), var(--background));
+      }
+
+      .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 2px solid transparent;
+        background-image: linear-gradient(var(--card), var(--card)),
+          linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        border-radius: 1rem;
+        padding: 3rem;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--neon-pink);
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--background);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        color: var(--foreground);
+        font-size: 1rem;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 0 2px rgba(255, 0, 204, 0.2);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin: 2rem 0;
+      }
+
+      .checkbox {
+        margin-top: 0.25rem;
+      }
+
+      .contact-options {
+        background: var(--background);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .contact-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        padding: 3rem 0 1rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-brand {
+        font-size: 2rem;
+        font-family: "Orbitron", sans-serif;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        color: var(--muted-foreground);
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--neon-pink);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        color: var(--muted-foreground);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--foreground);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 2rem;
+        text-align: center;
+        color: var(--muted-foreground);
+      }
+
+      /* Utilities */
+      .text-center {
+        text-align: center;
+      }
+      .text-neon-pink {
+        color: var(--neon-pink);
+      }
+      .text-neon-blue {
+        color: var(--neon-blue);
+      }
+      .mb-4 {
+        margin-bottom: 1rem;
+      }
+      .mb-8 {
+        margin-bottom: 2rem;
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .countdown {
+          gap: 1rem;
+        }
+
+        .countdown-number {
+          padding: 0.75rem;
+          font-size: 2rem;
+        }
+
+        .form-container {
+          padding: 2rem 1.5rem;
+        }
+
+        .contact-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <div class="nav-brand gradient-text">KINBATTLE</div>
+        <div class="nav-links">
+          <a href="#evento">Evento</a>
+          <a href="#premios">Premios</a>
+          <a href="#merch">Merchandise</a>
+          <a href="#inscripcion" class="btn">¡Inscríbete!</a>
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1 class="animate-pulse-glow">
+          <span class="gradient-text">KINBATTLE</span>
+          <div style="font-size: 0.6em; margin-top: 0.5rem">2025</div>
+        </h1>
+
+        <p>"¡Tres equipos, un balón gigante, una batalla épica!"</p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+          <div class="countdown-item">
+            <div class="countdown-number animate-countdown" id="days">000</div>
+            <div class="countdown-label">DÍAS</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number animate-countdown" id="hours">00</div>
+            <div class="countdown-label">HORAS</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number animate-countdown" id="minutes">
+              00
+            </div>
+            <div class="countdown-label">MIN</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number animate-countdown" id="seconds">
+              00
+            </div>
+            <div class="countdown-label">SEG</div>
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a href="#inscripcion" class="btn">
+            <i class="fas fa-trophy" style="margin-right: 0.5rem"></i>
+            ¡Inscríbete Ahora!
+          </a>
+          <a href="#evento" class="btn btn-outline">
+            <i class="fas fa-calendar" style="margin-right: 0.5rem"></i>
+            Ver Programa
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Event Information -->
+    <section id="evento">
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-calendar" style="margin-right: 1rem"></i>
+        Información del Evento
+      </h2>
+      <p class="section-subtitle">
+        Prepárate para la experiencia más épica de Kin-ball del año
+      </p>
+
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3
+            class="text-neon-pink"
+            style="font-size: 1.2rem; margin-bottom: 1rem"
+          >
+            Fecha
+          </h3>
+          <p style="font-size: 1.5rem; font-weight: bold">10 de junio</p>
+          <p style="color: var(--muted-foreground)">2025</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3
+            class="text-neon-blue"
+            style="font-size: 1.2rem; margin-bottom: 1rem"
+          >
+            Horario
+          </h3>
+          <p style="font-size: 1.5rem; font-weight: bold">12:40 - 13:40</p>
+          <p style="color: var(--muted-foreground)">1 hora de acción</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3
+            class="text-neon-pink"
+            style="font-size: 1.2rem; margin-bottom: 1rem"
+          >
+            Lugar
+          </h3>
+          <p style="font-size: 1.5rem; font-weight: bold">Pabellón del IES</p>
+          <p style="color: var(--muted-foreground)">"Cañada de las Fuentes"</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <h3
+            class="text-neon-blue"
+            style="font-size: 1.2rem; margin-bottom: 1rem"
+          >
+            Extras
+          </h3>
+          <p style="font-size: 1.5rem; font-weight: bold">DJ en vivo</p>
+          <p style="color: var(--muted-foreground)">Música épica</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prizes -->
+    <section id="premios" style="background: var(--card)">
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-trophy" style="margin-right: 1rem"></i>
+        Premios Épicos
+      </h2>
+      <p class="section-subtitle">Compite por increíbles recompensas</p>
+
+      <div class="prizes-grid">
+        <div class="prize-card">
+          <div class="prize-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3
+            style="
+              font-size: 2rem;
+              font-weight: bold;
+              color: var(--yellow);
+              margin-bottom: 1rem;
+            "
+          >
+            1er LUGAR
+          </h3>
+          <div
+            style="
+              background: rgba(255, 215, 0, 0.1);
+              border-radius: 0.5rem;
+              padding: 1rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <p style="font-size: 1.5rem; font-weight: bold">
+              2 bolsas de chuches
+            </p>
+            <p style="color: var(--muted-foreground)">por equipo</p>
+          </div>
+          <div style="font-size: 2.5rem; color: var(--yellow)">
+            <i class="fas fa-medal"></i>
+          </div>
+        </div>
+
+        <div class="prize-card second">
+          <div class="prize-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3
+            style="
+              font-size: 2rem;
+              font-weight: bold;
+              color: var(--gray);
+              margin-bottom: 1rem;
+            "
+          >
+            2º LUGAR
+          </h3>
+          <div
+            style="
+              background: rgba(136, 136, 136, 0.1);
+              border-radius: 0.5rem;
+              padding: 1rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <p style="font-size: 1.5rem; font-weight: bold">
+              1 bolsa de chuches
+            </p>
+            <p style="color: var(--muted-foreground)">por equipo</p>
+          </div>
+          <div style="font-size: 2.5rem; color: var(--gray)">
+            <i class="fas fa-trophy"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merchandise -->
+    <section id="merch">
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-store" style="margin-right: 1rem"></i>
+        Merchandise Oficial
+      </h2>
+      <p class="section-subtitle">Lleva contigo el espíritu de KINBATTLE</p>
+
+      <div class="merch-grid">
+        <div class="merch-card">
+          <div class="merch-image">
+            <img src="attached_assets/e2292e8e-057a-4710-894c-9f7c2e752a5b.jpeg" alt="Camiseta Oficial KINBATTLE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
+          </div>
+          <div class="merch-content">
+            <h3 class="text-neon-pink mb-4">Camiseta Oficial</h3>
+            <p style="color: var(--muted-foreground); margin-bottom: 1rem">
+              Colores disponibles: Fucsia, Azul, Negro
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              "
+            >
+              <span class="merch-price">15.00€</span>
+              <div class="color-dots">
+                <div class="color-dot" style="background-color: #ff00cc"></div>
+                <div class="color-dot" style="background-color: #3333ff"></div>
+                <div class="color-dot" style="background-color: #000000"></div>
+              </div>
+            </div>
+            <button class="btn" style="width: 100%">Añadir al carrito</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-image">
+            <img src="attached_assets/8e24435c-cd95-466c-ba52-085134688ba4.jpeg" alt="Gorra KINBATTLE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
+          </div>
+          <div class="merch-content">
+            <h3 class="text-neon-pink mb-4">Gorra Kinbattle</h3>
+            <p style="color: var(--muted-foreground); margin-bottom: 1rem">
+              Con logo bordado
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              "
+            >
+              <span class="merch-price">8.00€</span>
+              <div class="color-dots">
+                <div class="color-dot" style="background-color: #ff00cc"></div>
+                <div class="color-dot" style="background-color: #3333ff"></div>
+              </div>
+            </div>
+            <button class="btn" style="width: 100%">Añadir al carrito</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-image">
+            <img src="attached_assets/ca12beb3-6420-4022-8620-e06df2e7a54e.jpeg" alt="Botella Deportiva KINBATTLE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
+          </div>
+          <div class="merch-content">
+            <h3 class="text-neon-pink mb-4">Botella Deportiva</h3>
+            <p style="color: var(--muted-foreground); margin-bottom: 1rem">
+              Reutilizable, con logo y colores del torneo
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              "
+            >
+              <span class="merch-price">10.00€</span>
+              <div class="color-dots">
+                <div class="color-dot" style="background-color: #ff00cc"></div>
+                <div class="color-dot" style="background-color: #3333ff"></div>
+              </div>
+            </div>
+            <button class="btn" style="width: 100%">Añadir al carrito</button>
+          </div>
+        </div>
+
+        <div class="merch-card">
+          <div class="merch-image">
+            <img src="attached_assets/62a0eca2-b13c-4a4c-ab45-341d9e19d5c9.jpeg" alt="Pulseras de Silicona KINBATTLE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
+          </div>
+          <div class="merch-content">
+            <h3 class="text-neon-pink mb-4">Pulseras de Silicona</h3>
+            <p style="color: var(--muted-foreground); margin-bottom: 1rem">
+              ¡Respeta, coopera, compite!
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              "
+            >
+              <span class="merch-price">3.00€</span>
+              <div class="color-dots">
+                <div class="color-dot" style="background-color: #ff00cc"></div>
+                <div class="color-dot" style="background-color: #3333ff"></div>
+                <div class="color-dot" style="background-color: #ffffff"></div>
+              </div>
+            </div>
+            <button class="btn" style="width: 100%">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Objectives -->
+    <section style="background: var(--card);">
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-bullseye" style="margin-right: 1rem;"></i>
+        Objetivos del Torneo
+      </h2>
+      <p class="section-subtitle">Nuestras metas para KINBATTLE 2025</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-users" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Promover el deporte del Kin-ball</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Dar a conocer esta disciplina única y divertida entre los estudiantes.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-handshake" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">Fomentar el trabajo en equipo</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Desarrollar habilidades de cooperación y comunicación entre los participantes.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-heart" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Incentivar la actividad física</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Motivar a los jóvenes a practicar deporte de manera regular y divertida.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-trophy" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">Crear un ambiente competitivo sano</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Establecer una competencia respetuosa basada en el fair play.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-graduation-cap" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Fortalecer la comunidad educativa</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Unir a estudiantes, profesores y familias en torno al deporte.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-smile" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">Generar diversión y entretenimiento</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Ofrecer una experiencia memorable y divertida para todos los asistentes.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-star" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Desarrollar habilidades motoras</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Mejorar la coordinación, agilidad y reflejos de los participantes.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-brain" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">Estimular la estrategia y táctica</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Fomentar el pensamiento estratégico y la toma de decisiones rápidas.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-globe" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Promover valores universales</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Transmitir respeto, tolerancia y solidaridad a través del deporte.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--background); border-radius: 1rem; border: 1px solid var(--border);">
+          <div style="background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); border-radius: 50%; padding: 0.5rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-seedling" style="color: white; font-size: 1rem;"></i>
+          </div>
+          <div>
+            <h3 style="color: var(--neon-blue); margin-bottom: 0.5rem;">Inspirar la práctica deportiva futura</h3>
+            <p style="color: var(--muted-foreground); font-size: 0.9rem;">Motivar a los estudiantes a continuar practicando deporte después del evento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-gamepad" style="margin-right: 1rem"></i>
+        Actividades
+      </h2>
+      <p class="section-subtitle">
+        Una experiencia completa de entretenimiento
+      </p>
+
+      <div class="activities-grid">
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3 class="text-neon-pink mb-4" style="font-size: 1.5rem">
+            Torneo por Equipos
+          </h3>
+          <p style="color: var(--muted-foreground)">
+            Competición oficial de Kin-ball con equipos de tres jugadores.
+            Sistema de eliminación directa para máxima emoción.
+          </p>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3 class="text-neon-blue mb-4" style="font-size: 1.5rem">
+            Exhibición Profesional
+          </h3>
+          <p style="color: var(--muted-foreground)">
+            Demostración de técnicas avanzadas por parte de jugadores
+            profesionales. Aprende los mejores movimientos.
+          </p>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <h3 style="color: #a855f7; font-size: 1.5rem" class="mb-4">
+            Zona de Animación
+          </h3>
+          <p style="color: var(--muted-foreground)">
+            DJ en vivo con música energética durante todo el evento. Ambiente
+            festivo garantizado para todos los participantes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration -->
+    <section id="inscripcion" class="registration">
+      <h2 class="section-title gradient-text">
+        <i class="fas fa-user-plus" style="margin-right: 1rem"></i>
+        Inscripción
+      </h2>
+      <p class="section-subtitle">¡Únete a la batalla más épica del año!</p>
+
+      <div class="form-container">
+        <form id="registrationForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-users" style="margin-right: 0.5rem"></i>
+                Nombre del Equipo
+              </label>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Los Guerreros del Kinball"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label text-neon-blue">
+                <i class="fas fa-users" style="margin-right: 0.5rem"></i>
+                Categoría
+              </label>
+              <select class="form-select" required>
+                <option value="">Selecciona categoría</option>
+                <option value="junior">Junior (12-16 años)</option>
+                <option value="senior">Senior (17+ años)</option>
+                <option value="mixto">Mixto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <i class="fas fa-users" style="margin-right: 0.5rem"></i>
+              Miembros del Equipo (3 jugadores)
+            </label>
+            <div class="form-grid">
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Jugador 1"
+                required
+              />
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Jugador 2"
+                required
+              />
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Jugador 3"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label text-neon-blue">
+                <i class="fas fa-envelope" style="margin-right: 0.5rem"></i>
+                Email de Contacto
+              </label>
+              <input
+                type="email"
+                class="form-input"
+                placeholder="equipo@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fas fa-phone" style="margin-right: 0.5rem"></i>
+                Teléfono
+              </label>
+              <input
+                type="tel"
+                class="form-input"
+                placeholder="+34 600 000 000"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" style="color: var(--muted-foreground)">
+              <i class="fas fa-comment" style="margin-right: 0.5rem"></i>
+              Información Adicional (Opcional)
+            </label>
+            <textarea
+              class="form-textarea"
+              placeholder="Experiencia previa, necesidades especiales, etc."
+            ></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" class="checkbox" id="terms" required />
+            <label
+              for="terms"
+              style="color: var(--muted-foreground); font-size: 0.9rem"
+            >
+              Acepto los
+              <a href="#" style="color: var(--neon-pink)"
+                >términos y condiciones</a
+              >
+              y confirmo que toda la información proporcionada es correcta.
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="btn"
+            style="width: 100%; padding: 1rem; font-size: 1.1rem"
+          >
+            <i class="fas fa-rocket" style="margin-right: 0.5rem"></i>
+            ¡Inscribir Equipo!
+          </button>
+        </form>
+
+        <div class="contact-options">
+          <h3 style="margin-bottom: 1rem">
+            ¿Prefieres contactar directamente?
+          </h3>
+          <div class="contact-buttons">
+            <a
+              href="mailto:contacto@kinbattle2025.com"
+              class="btn"
+              style="background: var(--neon-pink)"
+            >
+              <i class="fas fa-envelope" style="margin-right: 0.5rem"></i>
+              Email
+            </a>
+            <a
+              href="tel:+34000000000"
+              class="btn"
+              style="background: var(--neon-blue)"
+            >
+              <i class="fas fa-phone" style="margin-right: 0.5rem"></i>
+              Teléfono
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div style="grid-column: span 2">
+            <div class="footer-brand gradient-text">KINBATTLE 2025</div>
+            <p
+              style="
+                color: var(--muted-foreground);
+                margin-bottom: 1rem;
+                max-width: 400px;
+              "
+            >
+              El torneo de Kin-ball más épico del año. Tres equipos, un balón
+              gigante, una batalla legendaria.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-neon-pink mb-4" style="font-size: 1.2rem">
+              Enlaces Rápidos
+            </h3>
+            <ul class="footer-links">
+              <li><a href="#evento">Información del Evento</a></li>
+              <li><a href="#premios">Premios</a></li>
+              <li><a href="#merch">Merchandise</a></li>
+              <li><a href="#inscripcion">Inscripción</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-neon-blue mb-4" style="font-size: 1.2rem">
+              Contacto
+            </h3>
+            <ul class="footer-links">
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                <span style="margin-right: 0.5rem">📧</span>
+                contacto@kinbattle2025.com
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                <span style="margin-right: 0.5rem">📍</span>
+                IES Cañada de las Fuentes
+              </li>
+              <li style="display: flex; align-items: center">
+                <span style="margin-right: 0.5rem">📅</span>
+                10 de junio, 2025
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p style="margin-bottom: 0.5rem">
+            © 2025 Kinbattle. Todos los derechos reservados.
+          </p>
+          <p>
+            Web creada por estudiantes de 1º Bach – IES Cañada de las Fuentes
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Countdown Timer
+      function updateCountdown() {
+        const targetDate = new Date("2025-06-10T12:40:00").getTime();
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const minutes = Math.floor(
+            (difference % (1000 * 60 * 60)) / (1000 * 60),
+          );
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = days
+            .toString()
+            .padStart(3, "0");
+          document.getElementById("hours").textContent = hours
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("minutes").textContent = minutes
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("seconds").textContent = seconds
+            .toString()
+            .padStart(2, "0");
+        } else {
+          document.getElementById("days").textContent = "000";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+        }
+      }
+
+      // Update countdown every second
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form submission
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "¡Gracias por tu inscripción! Te contactaremos pronto con más detalles.",
+          );
+          this.reset();
+        });
+
+      // Mobile menu toggle (basic implementation)
+      document
+        .querySelector(".mobile-menu-btn")
+        .addEventListener("click", function () {
+          const navLinks = document.querySelector(".nav-links");
+          navLinks.style.display =
+            navLinks.style.display === "flex" ? "none" : "flex";
+        });
+    </script>
+  </body>
+</html>
